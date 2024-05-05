@@ -6,6 +6,7 @@ import {
   conversations,
   createConversation,
 } from "@grammyjs/conversations";
+import setupCommands from './cmds/index.js';
 
 // Создание бота
 type MyContext = Context & ConversationFlavor;
@@ -15,10 +16,8 @@ const bot = new Bot<MyContext>(process.env.BOT_TOKEN);
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
 
-// Создание команды /start
-bot.command("start", async (ctx) => {
-  ctx.reply(`Добро пожаловать!`);
-});
+// Установка команд
+setupCommands(bot);
 
 // Запуск бота
 bot.start();
