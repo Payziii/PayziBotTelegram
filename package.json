@@ -1,0 +1,27 @@
+{
+  "name": "payzibottelegram",
+  "version": "0.0.1",
+  "description": "PayziBot, но в Telegram",
+  "main": "build/bot.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node build/bot.js"
+  },
+  "keywords": [
+    "telegram",
+    "payzibot"
+  ],
+  "type": "module",
+  "author": "Payziii",
+  "license": "MIT",
+  "dependencies": {
+    "@grammyjs/conversations": "^1.2.0",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.22.4",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
+}
