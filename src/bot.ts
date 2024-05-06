@@ -2,11 +2,10 @@
 import 'dotenv/config';
 import { Bot, session, Context } from "grammy";
 import {
-  type ConversationFlavor,
-  conversations,
-  createConversation,
+  type ConversationFlavor
 } from "@grammyjs/conversations";
 import setupCommands from './cmds/index.js';
+import setupConversations from './cmds/conversations.js';
 
 // Создание бота
 type MyContext = Context & ConversationFlavor;
@@ -14,10 +13,10 @@ const bot = new Bot<MyContext>(process.env.BOT_TOKEN);
 
 // Подключение зависимостей
 bot.use(session({ initial: () => ({}) }));
-bot.use(conversations());
 
-// Установка команд
-setupCommands(bot);
+// Установка команд и диалогов
+setupConversations(bot).then(() => console.log("Диалоги установлены"));
+setupCommands(bot).then(() => console.log("Команды установлены"));
 
 // Запуск бота
 bot.start();

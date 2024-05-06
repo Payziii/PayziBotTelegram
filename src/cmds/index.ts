@@ -4,4 +4,8 @@ export default async function setupCommands(bot: any) {
         ctx.reply(`Добро пожаловать! Список команд:\n\n- /weather - погода в определенном городе`);
     });
 
+    bot.command("weather", async (ctx) => {
+        await ctx.conversation.enter("weather");
+    });
+
 }
