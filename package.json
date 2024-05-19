@@ -5,7 +5,7 @@
   "main": "build/bot.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node build/bot.js"
+    "start": "npm i && npm run build && node build/bot.js"
   },
   "keywords": [
     "telegram",

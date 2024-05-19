@@ -8,4 +8,7 @@ export default async function setupCommands(bot: any) {
         await ctx.conversation.enter("weather");
     });
 
+    bot.command("ask", async (ctx) => {
+        await ctx.conversation.enter("ask");
+    });
 }
