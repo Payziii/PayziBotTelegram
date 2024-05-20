@@ -22,7 +22,7 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
         return ctx.reply("Ошибка при получении данных:\n\n" + data.error.message);
     }
 
-    ctx.reply(`${data.location.name}, ${data.location.country}\n${data.current.condition.text}\n\nТекущая погода:\nТемпература: ${<string>data.current.temp_c}°C\nОщущается как: ${<string>data.current.feelslike_c}°C\nВлажность: ${<string>data.current.humidity}%\nВетер: ${<string><unknown>(data.current.wind_kph / 3.6).toFixed(1)} м/c`)
+    ctx.reply(`[ ${data.location.name}, ${data.location.country} ]\n${data.current.condition.text}\n\nТекущая погода:\n• Температура: ${<string>data.current.temp_c}°C\n• Ощущается как: ${<string>data.current.feelslike_c}°C\n• Влажность: ${<string>data.current.humidity}%\n• Ветер: ${<string><unknown>(data.current.wind_kph / 3.6).toFixed(1)} м/c`)
 }
 
 let data = {
