@@ -3,8 +3,7 @@ import User from './user.js';
 
 export default async function setupDatabase(bot: any) {
 
-await mongoose.connect(process.env.MONGODB_URI);
-mongoose.connection.on('connected', () => console.log('База данных подключена'));
+mongoose.connect(process.env.MONGODB_URI);
 
 bot.schemas = {};
 bot.schemas.user = User;
