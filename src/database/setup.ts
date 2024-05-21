@@ -5,6 +5,7 @@ import User from './user.js';
 export function setupDatabase(bot: any) {
 
     mongoose.connect(process.env.MONGODB_URI);
+    mongoose.connection.on('connected', () => console.log('База данных подключена'));
 
     bot.schemas = {};
     bot.schemas.user = User;

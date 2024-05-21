@@ -17,8 +17,9 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
     if(['gpt', 'gpt4', 'gemini'].includes(model.message.text.toLowerCase()) === false) return ctx.reply("Модель указана неверно");
     await ctx.reply("Введите ваш запрос");
     const answer: any = await conversation.wait();
-    const text: any = await ask(model.message.text, answer.message.text);
-    ctx.reply(text);
+    ask(model.message.text, answer.message.text).then((text) => {
+        ctx.reply(text);
+    })
 }
 
 let data = {
