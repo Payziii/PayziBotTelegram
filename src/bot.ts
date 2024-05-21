@@ -6,7 +6,7 @@ import {
 } from "@grammyjs/conversations";
 import setupCommands from './cmds/index.js';
 import setupConversations from './cmds/conversations.js';
-import { setupDatabase } from './database/setup.js';
+import { setupDatabase } from './database/functions.js';
 
 // Создание бота
 type MyContext = Context & ConversationFlavor;

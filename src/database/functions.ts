@@ -14,11 +14,8 @@ export function setupDatabase(bot: any) {
 // Создание нового юзера
 export async function createUser(userID: number) {
 
-    let user = await User.findOne({ userID });
-    if (!user) {
-        user = new User({ userID });
-        await user.save();
-    }
+    let user = new User({ userID });
+    await user.save().then(() => console.log('Создан новый пользователь'));
 
     return user;
 }
