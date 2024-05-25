@@ -133,3 +133,4 @@ dist
 build/
 
 # VisualStudio folder
+.vs/
