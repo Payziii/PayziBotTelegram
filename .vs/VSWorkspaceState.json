@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\cmds",
+    "\\src\\cmds\\Main",
+    "\\src\\cmds\\Neuro"
+  ],
+  "SelectedNode": "\\src\\cmds\\Neuro\\asknn.ts",
+  "PreviewInSolutionExplorer": false
+}
