@@ -12,7 +12,7 @@ type MyConversation = Conversation<MyContext>;
 
 // Создание команды
 export async function execute(conversation: MyConversation, ctx: MyContext) {
-    await ctx.reply("Введите модель: gpt, gpt4, gemini");
+    await ctx.reply("Введите ваш запрос");
     const answer: any = await conversation.wait();
     ask('gpt4', answer.message.text).then((text) => {
         ctx.reply(text);
