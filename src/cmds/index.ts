@@ -16,8 +16,8 @@ export default async function setupCommands(bot: any) {
         await ctx.conversation.enter("ask");
     });
 
-    bot.command("asknn", async (ctx: any) => {
-        await ctx.conversation.enter("asknn");
+    bot.command("gpt4", async (ctx: any) => {
+        await ctx.conversation.enter("gpt4");
     });
 
     bot.command("stats", async (ctx: any) => {
