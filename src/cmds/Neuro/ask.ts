@@ -21,7 +21,7 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
       });
 
     await ctx.reply("Введите ваш запрос");
-    const answer: any = await conversation.wait();
+    const answer: any = await conversation.waitFrom(ctx.from);
     const neuro = await conversation.external(() => ask(response.match, answer.message.text))
     ctx.reply(neuro)
 }

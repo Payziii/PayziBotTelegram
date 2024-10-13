@@ -13,7 +13,7 @@ type MyConversation = Conversation<MyContext>;
 // Создание команды
 export async function execute(conversation: MyConversation, ctx: MyContext) {
     await ctx.reply("Введите название города:");
-    const answer = await conversation.wait();
+    const answer = await conversation.waitFrom(ctx.from);
     const city = answer.message.text;
     const data = await conversation.external(() => getCurrent(city))
 
