@@ -1,6 +1,6 @@
 {
   "name": "payzibottelegram",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PayziBot, но в Telegram",
   "main": "build/bot.js",
   "scripts": {

@@ -15,7 +15,7 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
     await ctx.reply("Введите название города:");
     const answer = await conversation.wait();
     const city = answer.message.text;
-    const data = await getCurrent(city);
+    const data = await conversation.external(() => getCurrent(city))
 
     if (data.error) {
         if (data.error.code == 1006) return ctx.reply("Такой город не найден");

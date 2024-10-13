@@ -1,5 +1,5 @@
 // Импортирование необходимых зависимостей и файлов
-import { Context } from "grammy";
+import { Context, InlineKeyboard } from "grammy";
 import {
     type Conversation,
     type ConversationFlavor,
@@ -12,14 +12,18 @@ type MyConversation = Conversation<MyContext>;
 
 // Создание команды
 export async function execute(conversation: MyConversation, ctx: MyContext) {
-    await ctx.reply("Введите модель: gpt, gpt4, gemini");
-    const model: any = await conversation.wait();
-    if(['gpt', 'gpt4', 'gemini'].includes(model.message.text.toLowerCase()) === false) return ctx.reply("Модель указана неверно");
+    const keyboard = new InlineKeyboard()
+    .text(`GPT-4`, `gpt4`).text(`Gemini`, `gemini`)
+    await ctx.reply("Выберите модель", { reply_markup: keyboard });
+
+    const response = await conversation.waitForCallbackQuery(["gpt4", "gemini"], {
+        otherwise: (ctx) => ctx.reply("Модель указана неверно"),
+      });
+
     await ctx.reply("Введите ваш запрос");
     const answer: any = await conversation.wait();
-    ask(model.message.text, answer.message.text).then((text) => {
-        ctx.reply(text);
-    })
+    const neuro = await conversation.external(() => ask(response.match, answer.message.text))
+    ctx.reply(neuro)
 }
 
 let data = {
