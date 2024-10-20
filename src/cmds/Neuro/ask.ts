@@ -14,16 +14,16 @@ type MyConversation = Conversation<MyContext>;
 export async function execute(conversation: MyConversation, ctx: MyContext) {
     const keyboard = new InlineKeyboard()
     .text(`GPT-4`, `gpt4`).text(`Gemini`, `gemini`)
-    await ctx.reply("Выберите модель", { reply_markup: keyboard });
+    let msg = await ctx.reply("Выберите модель", { reply_markup: keyboard });
 
     const response = await conversation.waitForCallbackQuery(["gpt4", "gemini"], {
         maxMilliseconds: 10000,
       });
 
-    await ctx.reply("Введите ваш запрос");
+    await ctx.api.editMessageText(msg.chat.id, msg.message_id, "Введите ваш запрос");
     const answer: any = await conversation.waitFrom(ctx.from);
     const neuro = await conversation.external(() => ask(response.match, answer.message.text))
-    ctx.reply(neuro)
+    ctx.api.editMessageText(msg.chat.id, msg.message_id, neuro)
 }
 
 let data = {
