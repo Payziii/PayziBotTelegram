@@ -17,7 +17,7 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
     await ctx.reply("Выберите модель", { reply_markup: keyboard });
 
     const response = await conversation.waitForCallbackQuery(["gpt4", "gemini"], {
-        otherwise: (ctx) => ctx.reply("Модель указана неверно"),
+        otherwise: (ctx) => { return ctx.reply("Модель указана неверно") },
       });
 
     await ctx.reply("Введите ваш запрос");
