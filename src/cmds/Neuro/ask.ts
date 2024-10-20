@@ -23,7 +23,7 @@ export async function execute(conversation: MyConversation, ctx: MyContext) {
     await ctx.api.editMessageText(msg.chat.id, msg.message_id, "Введите ваш запрос");
     const answer: any = await conversation.waitFrom(ctx.from);
     const neuro = await conversation.external(() => ask(response.match, answer.message.text))
-    ctx.api.editMessageText(msg.chat.id, msg.message_id, neuro)
+    ctx.api.sendMessage(msg.chat.id, neuro, { reply_to_message_id: answer.message_id})
 }
 
 let data = {
