@@ -1,6 +1,6 @@
 // Импортирование необходимых зависимостей и файлов
 import 'dotenv/config';
-import { Bot, session, Context } from "grammy";
+import { Bot, session, Context, GrammyError, HttpError } from "grammy";
 import {
   type ConversationFlavor
 } from "@grammyjs/conversations";
@@ -19,6 +19,19 @@ bot.use(session({ initial: () => ({}) }));
 setupConversations(bot).then(() => console.log("Диалоги установлены"));
 setupCommands(bot).then(() => console.log("Команды установлены"));
 setupDatabase(bot);
+
+bot.catch((err) => {
+  const ctx = err.ctx;
+  console.log(`Error while handling update ${ctx.update.update_id}:`);
+  const e = err.error;
+  if (e instanceof GrammyError) {
+    console.log("Error in request:", e.description);
+  } else if (e instanceof HttpError) {
+    console.log("Could not contact Telegram:", e);
+  } else {
+    console.log("Unknown error:", e);
+  }
+});
 
 // Запуск бота
 bot.start();
