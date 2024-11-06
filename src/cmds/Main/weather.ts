@@ -22,9 +22,10 @@ type MyConversation = Conversation<MyContext>;
 
 // Создание команды
 export async function execute(conversation: MyConversation, ctx: MyContext) {
-    let msg1 = await ctx.reply("Введите название города:");
+    let msg1 = await ctx.reply("Введите название города или отправьте точку на карте:");
     const answer = await conversation.waitFrom(ctx.from);
-    const city = answer.message.text;
+    const geo = answer?.message?.location
+    const city = answer?.message?.text || `${geo.latitude},${geo.longitude}`;
     const data = await conversation.external(() => getCurrent(city))
 
     if (data.error) {
