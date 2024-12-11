@@ -16,6 +16,10 @@ export default async function setupCommands(bot: any) {
         await ctx.conversation.enter("ask");
     });
 
+    bot.command("gemini", async (ctx: any) => {
+        await ctx.conversation.enter("gemini");
+    });
+
     bot.command("gpt4", async (ctx: any) => {
         await ctx.conversation.enter("gpt4");
     });
